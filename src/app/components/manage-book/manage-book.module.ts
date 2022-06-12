@@ -13,6 +13,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatDividerModule } from '@angular/material/divider';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     ManageBookComponent
@@ -20,6 +21,7 @@ import { MatDividerModule } from '@angular/material/divider';
   imports: [
     CommonModule,
     ManageBookRoutingModule,
+    BrowserAnimationsModule,
     MatButtonModule,
     MatInputModule,
     MatDatepickerModule,

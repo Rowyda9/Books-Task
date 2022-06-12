@@ -22,12 +22,14 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-![image](https://user-images.githubusercontent.com/46627901/173236934-1d9cdee5-2740-4812-bb95-697d7497e4bc.png)
+![image](https://user-images.githubusercontent.com/46627901/173245805-b140f415-acd4-4323-94b8-1654c081df84.png)
 
 
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+
+Protractor version: 7.0.0
 
 ## Further help
 

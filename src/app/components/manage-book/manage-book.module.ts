@@ -21,7 +21,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     CommonModule,
     ManageBookRoutingModule,
-    BrowserAnimationsModule,
     MatButtonModule,
     MatInputModule,
     MatDatepickerModule,

@@ -33,7 +33,6 @@
             "stylePreprocessorOptions": {
               "includePaths": [
                 "src/assets/scss"
-
               ]
             },
             "styles": [
@@ -108,7 +107,6 @@
             "stylePreprocessorOptions": {
               "includePaths": [
                 "src/assets/scss"
-
               ]
             },
             "styles": [
@@ -116,6 +114,37 @@
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "lib-task:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "lib-task:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "lib-task:serve",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "lib-task:serve:production"
+            }
           }
         }
       }

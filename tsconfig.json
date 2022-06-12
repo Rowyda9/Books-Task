@@ -1,7 +1,12 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
+  "include": [
+    "src",
+    "./cypress.d.ts"
+  ],
   "compilerOptions": {
+
     "baseUrl": "./",
     "paths": {
       "@services/*": ["src/app/core/services/*"],

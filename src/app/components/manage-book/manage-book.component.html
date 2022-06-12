@@ -16,7 +16,8 @@
         </mat-form-field>
 
       <mat-form-field class="p-color" color="primary">
-        <input class="p-color" color="primary" matInput placeholder="Author's name" name="authorName" formControlName="authorName">
+        <input class="p-color" color="primary" matInput placeholder="Author's name" name="authorName"
+         formControlName="authorName">
         <mat-error *ngIf="validateControlName('authorName')">
           {{validateControlName('authorName')}}
         </mat-error>

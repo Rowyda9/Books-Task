@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from '@models/book/book.model';
@@ -38,6 +38,8 @@ export const MY_FORMATS = {
 })
 
 export class ManageBookComponent implements OnInit {
+  @Output() testBook: EventEmitter<Book> = new EventEmitter<Book>();
+
   bookId = 0;
   book = new Book();
   get isEdit(): boolean {
@@ -115,6 +117,14 @@ export class ManageBookComponent implements OnInit {
     if (this.bookForm.invalid) return;
     this.book = this.bookForm.value;
     this.book.publishYear = this.date.value.year();
+
+    this.testBook.emit(
+      new Book(1,
+          this.bookForm.value.title,
+          this.bookForm.value.authorName,
+         this.bookForm.value.publishYear
+      )
+  );
 
     if (this.isEdit) {
       this.book.id = this.bookId;

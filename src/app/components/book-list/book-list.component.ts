@@ -50,7 +50,7 @@ export class BookListComponent implements OnInit {
    *
    */
     getBooks() {
-      this.books = this.facadeService.bookService.list();
+      this.books = this.facadeService.bookService.listAll();
     }
 
   /**

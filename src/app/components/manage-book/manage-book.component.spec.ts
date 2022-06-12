@@ -11,6 +11,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ManageBookComponent } from './manage-book.component';
+import { Book } from '../../core/models/book/book.model';
 
 describe('ManageBookComponent', () => {
   let component: ManageBookComponent;
@@ -42,9 +43,47 @@ describe('ManageBookComponent', () => {
     fixture = TestBed.createComponent(ManageBookComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    component.ngOnInit();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('form invalid when empty', () => {
+    expect(component.bookForm.valid).toBeFalsy();
+  });
+
+  it('title field validity', () => {
+    let errors:any = {};
+    let field = component.bookForm.controls['title'];
+    errors = field.errors || {};
+    expect(errors['required']).toBeTruthy();
+  });
+
+  it('author field validity', () => {
+    let errors:any = {};
+    let field = component.bookForm.controls['authorName'];
+    errors = field.errors || {};
+    expect(errors['required']).toBeTruthy();
+  });
+
+
+  it('submitting a form emits a book', async () => {
+    expect(component.bookForm.valid).toBeFalsy();
+    component.bookForm.controls['title'].setValue("Test Book");
+    component.bookForm.controls['authorName'].setValue("Author Test");
+    expect(component.bookForm.valid).toBeTruthy();
+
+     var book!: Book;
+     component.testBook.subscribe(
+      (value) => book = value
+      );
+    component.onSubmit();
+    expect(book.title).toBe("Test Book");
+    expect(book.authorName).toBe("Author Test");
+  });
+
 });
+
+

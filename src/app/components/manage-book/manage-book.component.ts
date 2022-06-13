@@ -64,6 +64,7 @@ export class ManageBookComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    console.clear();
     if (this.isEdit)
        this.getBook();
   }

@@ -39,6 +39,7 @@ export class BookListComponent implements OnInit {
 
   ngOnInit(): void {
       this.getBooks();
+      console.clear();
     }
 
     trackBy(index: number, item: Book) {
@@ -50,7 +51,7 @@ export class BookListComponent implements OnInit {
    *
    */
     getBooks() {
-      this.books = this.facadeService.bookService.listAll();
+      this.books = this.facadeService.bookService.list();
     }
 
   /**

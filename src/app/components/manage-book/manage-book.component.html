@@ -23,9 +23,33 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="p-color" color="primary" appearance="fill">
-        <mat-label class="p-color">Publish Year (YYYY)</mat-label>
-        <input pattern="0-9" matInput color="primary" class="p-color"
+      <mat-form-field class="p-color" color="primary">
+        <input class="p-color" color="primary" matInput placeholder="Publish Year (YYYY)"
+        name="publishYear" type="number" [max]="currentYear" [min]="1700" formControlName="publishYear">
+        <mat-error *ngIf="validateControlName('publishYear')">
+          {{validateControlName('publishYear')}}
+        </mat-error>
+        <mat-error *ngIf="bookForm.get('publishYear')?.errors?.['max'] ">
+          Publish Year can not be greater than {{currentYear}}
+        </mat-error>
+
+        <mat-error *ngIf="bookForm.get('publishYear')?.errors?.['min'] ">
+          Publish Year can not be less than 1700
+        </mat-error>
+      </mat-form-field>
+
+      <!-- <mat-form-field class="p-color" color="primary" appearance="fill">
+        <input matInput placeholder="Publish Year (YYYY) "
+         [max]="currentYear" maxlength="4" name="publishYear" formControlName="publishYear">
+        <mat-error *ngIf="validateControlName('publishYear') ">
+          {{validateControlName('publishYear')}}
+        </mat-error>
+
+        <mat-error *ngIf="bookForm.get('publishYear')?.errors?.['max'] ">
+          Publish Year can not be greater than {{currentYear}}
+        </mat-error>
+
+        <!-- <input pattern="0-9" matInput color="primary" class="p-color"
         [matDatepicker]="dp" [formControl]="date"
          [max]="currentYear">
         <mat-datepicker-toggle  class="p-color" matSuffix [for]="dp"></mat-datepicker-toggle>
@@ -33,9 +57,9 @@
                         startView="multi-year"
                         (yearSelected)="setYear($event, dp)"
                         panelClass="book-year-picker">
-        </mat-datepicker>
+        </mat-datepicker> --
 
-      </mat-form-field>
+      </mat-form-field> -->
       <mat-form-field>
         <input matInput placeholder="Poster Link" name="poster" formControlName="poster">
         <mat-error >

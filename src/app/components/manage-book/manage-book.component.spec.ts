@@ -68,6 +68,12 @@ describe('ManageBookComponent', () => {
     expect(errors['required']).toBeTruthy();
   });
 
+  it('publish year field validity', () => {
+    let errors:any = {};
+    let field = component.bookForm.controls['publishYear'];
+    errors = field.errors || {};
+    expect(errors['required']).toBeTruthy();
+  });
 
   it('submitting a form emits a book', async () => {
     expect(component.bookForm.valid).toBeFalsy();

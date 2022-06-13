@@ -25,8 +25,12 @@ export class BookService  {
    *
    */
     list(): Book[] {
-    return ((JSON.parse(localStorage.getItem(this.localStorageKey) ?? '[]')) as Book[])
-    .sort((a, b) => a.order - b.order);
+      if(localStorage.getItem(this.localStorageKey)){
+        return ((JSON.parse(localStorage.getItem(this.localStorageKey) ?? '[]')) as Book[])
+        .sort((a, b) => a.order - b.order);
+      }
+      return [];
+
   }
 
     /**
@@ -52,7 +56,6 @@ export class BookService  {
    * @param body
    */
   update(body: Book): any {
-    debugger
     const list = this.list();
     const index = list.findIndex(t => t.id === body.id);
     list[index] = body;

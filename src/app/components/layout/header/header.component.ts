@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AppRoutes } from '@constants/routes';
 
 @Component({
@@ -6,14 +6,11 @@ import { AppRoutes } from '@constants/routes';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent  {
 
   get appRoutes(): typeof AppRoutes {
     return AppRoutes;
   }
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

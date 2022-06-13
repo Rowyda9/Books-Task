@@ -55,7 +55,7 @@
   </div>
 </ng-container>
 
-  <mat-card class="book-card animated fadeIn" *ngIf="books?.length == 0">
+  <mat-card class="book-card animated fadeIn" *ngIf="books?.length === 0">
     <mat-card-content>
       <img [src]="imgUrl" alt="No books found">
       <p>

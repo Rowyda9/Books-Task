@@ -5,7 +5,7 @@ import { Book } from '@models/book/book.model';
 import { FacadeService } from '@services/facade.service';
 import { AppRoutes } from '@constants/routes';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
+//import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import {MatDatepicker} from '@angular/material/datepicker';
 import * as _moment from 'moment';
@@ -25,16 +25,7 @@ export const MY_FORMATS = {
 @Component({
   selector: 'app-manage-book',
   templateUrl: './manage-book.component.html',
-  styleUrls: ['./manage-book.component.scss'],
-  providers: [
-    {
-      provide: DateAdapter,
-      useClass: MomentDateAdapter,
-      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
-    },
-
-    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
-  ],
+  styleUrls: ['./manage-book.component.scss']
 })
 
 export class ManageBookComponent implements OnInit {
@@ -48,11 +39,12 @@ export class ManageBookComponent implements OnInit {
   get routes(): typeof AppRoutes {
     return AppRoutes;
   }
-  currentYear = moment();
-  date = new FormControl(moment(),[Validators.required, Validators.maxLength(4)]);
+  currentYear : number=new Date().getFullYear();
+  //date = new FormControl(moment(),[Validators.required, Validators.maxLength(4)]);
   bookForm = new FormGroup({
     title: new FormControl('',[Validators.required, Validators.minLength(4)]),
     authorName: new FormControl('',Validators.required),
+    publishYear: new FormControl('',[Validators.required]),
     poster: new FormControl(''),
   });
 
@@ -60,13 +52,15 @@ export class ManageBookComponent implements OnInit {
     private facadeService: FacadeService,private activatedRoute: ActivatedRoute,
     private router: Router,private _snackBar: MatSnackBar ) {
     this.bookId = +(this.activatedRoute.snapshot.paramMap.get('id') ?? 0);
-    console.log(this.bookId)
+
    }
 
   ngOnInit(): void {
     console.clear();
     if (this.isEdit)
        this.getBook();
+
+       console.log(this.currentYear);
   }
 
   /**
@@ -103,12 +97,12 @@ export class ManageBookComponent implements OnInit {
    * @param normalizedYear
    * @param datepicker
    */
-  setYear(normalizedYear: _moment.Moment, datepicker: MatDatepicker<_moment.Moment>) {
-    const ctrlValue = this.date.value!;
-    ctrlValue.year(normalizedYear.year());
-    this.date.setValue(ctrlValue);
-    datepicker.close();
-  }
+  // setYear(normalizedYear: _moment.Moment, datepicker: MatDatepicker<_moment.Moment>) {
+  //   const ctrlValue = this.date.value!;
+  //   ctrlValue.year(normalizedYear.year());
+  //   this.date.setValue(ctrlValue);
+  //   datepicker.close();
+  // }
 
 /**
  * Save book
@@ -117,7 +111,7 @@ export class ManageBookComponent implements OnInit {
   onSubmit() {
     if (this.bookForm.invalid) return;
     this.book = this.bookForm.value;
-    this.book.publishYear = this.date.value.year();
+   // this.book.publishYear = this.date.value.year();
 
     this.testBook.emit(
       new Book(1,

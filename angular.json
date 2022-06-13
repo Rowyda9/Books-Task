@@ -146,9 +146,21 @@
               "devServerTarget": "lib-task:serve:production"
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "lib-task"
+  "defaultProject": "lib-task",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

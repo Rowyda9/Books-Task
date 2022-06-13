@@ -33,7 +33,7 @@ export class BookListComponent implements OnInit {
   get routes(): typeof AppRoutes {
     return AppRoutes;
   }
-  imgUrl = Assets.Empty;
+  imgUrl:string = Assets.Empty;
   constructor(private facadeService: FacadeService,
     public dialog: MatDialog,private _snackBar: MatSnackBar) { }
 
@@ -76,7 +76,7 @@ export class BookListComponent implements OnInit {
     if (await this.openDialog(book?.title)) {
     const isDeleted = this.facadeService.bookService.delete(book.id);
     if (isDeleted) {
-      this.books = this.books.filter(b => b.id !== book.id);
+      this.books = this.facadeService.bookService.list();
       this._snackBar.open("Book has been deleted successfully", "OK");
     }
   }

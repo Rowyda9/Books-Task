@@ -5,7 +5,7 @@ export class Book extends Base {
     public order: number=0,
     public title: string = null!,
     public authorName: string = null!,
-    public publishYear: string = null!,
+    public publishYear: number = null!,
     public poster:string = null!
 
   ) {
